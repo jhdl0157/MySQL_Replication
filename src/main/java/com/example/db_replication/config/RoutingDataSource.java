@@ -10,6 +10,13 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        return (TransactionSynchronizationManager.isCurrentTransactionReadOnly()) ? "slave" : "master";
+        boolean isReadOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
+        if (isReadOnly) {
+            logger.info("Connection Slave");
+            return "slave";
+        } else {
+            logger.info("Connection Master");
+            return "master";
+        }
     }
 }
