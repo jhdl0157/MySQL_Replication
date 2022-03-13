@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    master:
+      hikari:
+        username: root
+        password: password
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://ec2-3-36-107-15.ap-northeast-2.compute.amazonaws.com:3306/db
+    slave:
+      hikari:
+        username: root
+        password: password
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://ec2-3-36-107-15.ap-northeast-2.compute.amazonaws.com:3307/db
+
+
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
